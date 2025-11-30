@@ -11,11 +11,10 @@
     "next": "13.5.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "formidable": "3.7.1"
+    "formidable": "2.0.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.5.0",
-    "postcss": "^8.4.24",
-    "autoprefixer": "^10.4.14"
+    "unocss": "^0.56.0",
+    "@unocss/preset-uno": "^0.56.0"
   }
 }

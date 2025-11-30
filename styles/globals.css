@@ -1,8 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* Small helper utilities and container */
+/* Small helper utilities and container for UnoCSS */
 .container{max-width:900px;margin:0 auto;padding:16px}
 .ad-slot{margin:12px 0;padding:12px;border-radius:8px;text-align:center}
 .small{font-size:0.9rem}
