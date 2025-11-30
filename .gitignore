@@ -14,7 +14,7 @@ yarn-error.log*
 .env.local
 .env.*.local
 
-# OS
+# OS Thendo
 .DS_Store
 Thumbs.db
 
