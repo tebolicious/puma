@@ -17,57 +17,56 @@ export default function JobDetail(){
 
   return (
     <div className="container">
-      <a href="/" className="muted">← Back to listings</a>
-      <h1>{job.title}</h1>
-      <div className="muted small">{job.company} — {job.province} — {job.category}</div>
-      <section style={{marginTop:12}}>
-        <img src={job.image} alt={job.title} style={{width:'100%',height:200,objectFit:'cover',borderRadius:8}}/>
+      <a href="/" className="text-sm text-slate-500">← Back to listings</a>
+      <h1 className="text-2xl font-bold mt-3">{job.title}</h1>
+      <div className="text-sm text-slate-500">{job.company} • {job.province} • {job.category}</div>
+      <section className="mt-4">
+        <img src={job.image || 'https://via.placeholder.com/800x300?text=Job'} alt={job.title} className="w-full h-48 sm:h-64 object-cover rounded-md"/>
       </section>
 
-      <section style={{marginTop:12}}>
-        <h3>Job description</h3>
-        <p>{job.description}</p>
+      <section className="mt-4">
+        <h3 className="text-lg font-semibold">Job description</h3>
+        <p className="text-slate-700 mt-2">{job.description}</p>
       </section>
 
-      <section style={{marginTop:12}}>
-        <h3>Apply</h3>
-        <form id="apply-form" onSubmit={async (e)=>{
+      <section className="mt-4">
+        <h3 className="text-lg font-medium">Apply</h3>
+        <form id="apply-form" className="mt-3" onSubmit={async (e)=>{
           e.preventDefault()
           const form = e.currentTarget
           const formData = new FormData(form)
           const res = await fetch('/api/upload-cv',{method:'POST',body:formData})
           const data = await res.json()
           if(data.preview){
-            // show preview
             alert('AI-edited CV preview:\n' + data.preview.slice(0,800))
           } else alert('Submitted')
         }}>
-          <div className="form-row">
-            <label className="small">Your name</label>
-            <input name="name" required />
+          <div className="flex flex-col gap-2 mb-2">
+            <label className="text-sm text-slate-600">Your name</label>
+            <input name="name" required className="border rounded-md p-2" />
           </div>
-          <div className="form-row">
-            <label className="small">Email</label>
-            <input name="email" type="email" required />
+          <div className="flex flex-col gap-2 mb-2">
+            <label className="text-sm text-slate-600">Email</label>
+            <input name="email" type="email" required className="border rounded-md p-2" />
           </div>
-          <div className="form-row">
-            <label className="small">Upload CV (plain text file recommended)</label>
-            <input name="cv" type="file" accept="text/*" required />
+          <div className="flex flex-col gap-2 mb-2">
+            <label className="text-sm text-slate-600">Upload CV (plain text file recommended)</label>
+            <input name="cv" type="file" accept="text/*" required className="" />
           </div>
           <input type="hidden" name="jobId" value={job.id} />
-          <button className="btn">Upload & Tailor CV</button>
+          <button className="bg-slate-900 text-white px-4 py-2 rounded-md">Upload & Tailor CV</button>
         </form>
       </section>
 
-      <section style={{marginTop:12}}>
-        <h3>Share this job</h3>
-        <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
-          <a className="btn" href={`https://wa.me/?text=${encodeURIComponent(job.title + ' - ' + (typeof window !== 'undefined' ? window.location.href : ''))}`} target="_blank" rel="noreferrer">Share WhatsApp</a>
-          <a className="btn" href={`mailto:?subject=${encodeURIComponent(job.title)}&body=${encodeURIComponent(job.description + '\n\nApply: ' + (typeof window !== 'undefined' ? window.location.href : ''))}`}>Share Email</a>
+      <section className="mt-4">
+        <h3 className="text-lg font-medium">Share this job</h3>
+        <div className="flex gap-2 mt-2">
+          <a className="inline-block bg-slate-100 text-slate-800 px-3 py-1 rounded-md text-sm" href={`https://wa.me/?text=${encodeURIComponent(job.title + ' - ' + (typeof window !== 'undefined' ? window.location.href : ''))}`} target="_blank" rel="noreferrer">WhatsApp</a>
+          <a className="inline-block bg-slate-100 text-slate-800 px-3 py-1 rounded-md text-sm" href={`mailto:?subject=${encodeURIComponent(job.title)}&body=${encodeURIComponent(job.description + '\n\nApply: ' + (typeof window !== 'undefined' ? window.location.href : ''))}`}>Email</a>
         </div>
       </section>
 
-      <section className="ad-slot" style={{marginTop:20}}>
+      <section className="ad-slot mt-6">
         <div id="in-article-ad" dangerouslySetInnerHTML={{__html: ads.inArticle || '<small>In-article ad</small>'}} />
       </section>
 

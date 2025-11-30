@@ -12,9 +12,14 @@ export default function Home(){
 
   return (
     <div className="container">
-      <header className="header">
-        <h1>pumajob.co.za</h1>
-        <a href="/admin/login" className="small">Admin</a>
+      <header className="flex items-center justify-between py-4">
+        <div>
+          <h1 className="text-2xl font-bold">pumajob.co.za</h1>
+          <div className="text-sm text-slate-500">Jobs across South Africa</div>
+        </div>
+        <div>
+          <a href="/admin/login" className="text-sm text-slate-600">Admin</a>
+        </div>
       </header>
 
       <section className="ad-slot" aria-label="Top Ad">
@@ -22,17 +27,17 @@ export default function Home(){
       </section>
 
       <main>
-        <h2>Latest jobs</h2>
-        <div className="job-grid">
+        <h2 className="text-xl font-semibold mt-4 mb-3">Latest jobs</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {jobs.map(job => <JobCard job={job} key={job.id} />)}
         </div>
       </main>
 
-      <section className="ad-slot" style={{marginTop:12}}>
+      <section className="ad-slot mt-6">
         <div dangerouslySetInnerHTML={{__html: ads.multiplex || '<small>Multiplex ad</small>'}} />
       </section>
 
-      <footer style={{marginTop:24}} className="muted small">Puma Job Portal — Jobs by province and category. Built for mobile-first SEO.</footer>
+      <footer className="mt-8 text-sm text-slate-500">Puma Job Portal — Jobs by province and category. Built for mobile-first SEO.</footer>
     </div>
   )
 }

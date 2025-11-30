@@ -32,36 +32,39 @@ export default function Dashboard(){
 
   return (
     <div className="container">
-      <a href="/" className="muted">← Public site</a>
-      <h1>Admin Dashboard</h1>
+      <a href="/" className="text-sm text-slate-500">← Public site</a>
+      <h1 className="text-2xl font-bold mt-2">Admin Dashboard</h1>
 
-      <section style={{marginTop:12}}>
-        <h2>Post a job</h2>
-        <form onSubmit={addJob}>
-          <div className="form-row"><label>Title</label><input name="title" required/></div>
-          <div className="form-row"><label>Company</label><input name="company"/></div>
-          <div className="form-row"><label>Province</label><input name="province" placeholder="e.g. Gauteng"/></div>
-          <div className="form-row"><label>Category</label><input name="category" placeholder="e.g. Government Jobs"/></div>
-          <div className="form-row"><label>Image URL (thumbnail)</label><input name="image" placeholder="https://..."/></div>
-          <div className="form-row"><label>Description</label><textarea name="description" rows={6}></textarea></div>
-          <button className="btn">Create Job</button>
+      <section className="mt-4">
+        <h2 className="text-lg font-semibold">Post a job</h2>
+        <form onSubmit={addJob} className="mt-3 grid grid-cols-1 gap-3">
+          <input name="title" required placeholder="Title" className="border rounded-md p-2" />
+          <input name="company" placeholder="Company" className="border rounded-md p-2" />
+          <input name="province" placeholder="Province (e.g. Gauteng)" className="border rounded-md p-2" />
+          <input name="category" placeholder="Category (e.g. Government Jobs)" className="border rounded-md p-2" />
+          <input name="image" placeholder="Image URL (thumbnail)" className="border rounded-md p-2" />
+          <textarea name="description" rows={6} placeholder="Description" className="border rounded-md p-2"></textarea>
+          <button className="bg-slate-900 text-white px-4 py-2 rounded-md w-full">Create Job</button>
         </form>
       </section>
 
-      <section style={{marginTop:20}}>
-        <h2>Manage Ads</h2>
-        <form onSubmit={saveAds}>
-          <div className="form-row"><label>Top ad slot (HTML)</label><textarea name="top" rows={3} defaultValue={ads.top}></textarea></div>
-          <div className="form-row"><label>In-article ad (HTML)</label><textarea name="inArticle" rows={3} defaultValue={ads.inArticle}></textarea></div>
-          <div className="form-row"><label>Multiplex ad (HTML)</label><textarea name="multiplex" rows={3} defaultValue={ads.multiplex}></textarea></div>
-          <button className="btn">Save Ads</button>
+      <section className="mt-6">
+        <h2 className="text-lg font-semibold">Manage Ads</h2>
+        <form onSubmit={saveAds} className="mt-3 grid gap-3">
+          <textarea name="top" rows={3} defaultValue={ads.top} className="border rounded-md p-2" placeholder="Top ad HTML"></textarea>
+          <textarea name="inArticle" rows={3} defaultValue={ads.inArticle} className="border rounded-md p-2" placeholder="In-article ad HTML"></textarea>
+          <textarea name="multiplex" rows={3} defaultValue={ads.multiplex} className="border rounded-md p-2" placeholder="Multiplex ad HTML"></textarea>
+          <button className="bg-slate-900 text-white px-4 py-2 rounded-md w-full">Save Ads</button>
         </form>
       </section>
 
-      <section style={{marginTop:20}}>
-        <h2>Existing Jobs</h2>
-        <div style={{display:'grid',gap:8}}>
-          {jobs.map(j=> <div key={j.id} className="card"><div style={{flex:1}}><strong>{j.title}</strong><div className="muted small">{j.province} • {j.category}</div></div></div>)}
+      <section className="mt-6">
+        <h2 className="text-lg font-semibold">Existing Jobs</h2>
+        <div className="mt-3 grid gap-3">
+          {jobs.map(j=> <div key={j.id} className="bg-white border border-gray-100 rounded-md p-3 flex justify-between items-center"><div>
+            <strong className="block">{j.title}</strong>
+            <div className="text-sm text-slate-500">{j.province} • {j.category}</div>
+          </div></div>)}
         </div>
       </section>
     </div>
