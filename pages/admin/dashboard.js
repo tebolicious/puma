@@ -9,7 +9,7 @@ function ensureAuth(){
 
 export default function Dashboard(){
   const [jobs,setJobs] = useState([])
-  const [ads,setAds] = useState({top:'',inArticle:'',multiplex:''})
+  const [ads,setAds] = useState({pubId:'',top:'',inArticle:'',multiplex:''})
 
   useEffect(()=>{ensureAuth(); fetch('/api/jobs').then(r=>r.json()).then(setJobs); fetch('/api/admin/ads').then(r=>r.json()).then(setAds)},[])
 
@@ -25,7 +25,7 @@ export default function Dashboard(){
 
   async function saveAds(e){
     e.preventDefault()
-    const body = {top:e.target.top.value,inArticle:e.target.inArticle.value,multiplex:e.target.multiplex.value}
+    const body = {pubId:e.target.pubId.value,top:e.target.top.value,inArticle:e.target.inArticle.value,multiplex:e.target.multiplex.value}
     await fetch('/api/admin/ads',{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
     alert('Ads saved')
   }
@@ -50,10 +50,12 @@ export default function Dashboard(){
 
       <section className="mt-6">
         <h2 className="text-lg font-semibold">Manage Ads</h2>
+        <p className="text-sm text-slate-500 mt-1">Only 3 ad slots are active (auto ads are disabled). Paste your AdSense snippets below.</p>
         <form onSubmit={saveAds} className="mt-3 grid gap-3">
-          <textarea name="top" rows={3} defaultValue={ads.top} className="border rounded-md p-2" placeholder="Top ad HTML"></textarea>
-          <textarea name="inArticle" rows={3} defaultValue={ads.inArticle} className="border rounded-md p-2" placeholder="In-article ad HTML"></textarea>
-          <textarea name="multiplex" rows={3} defaultValue={ads.multiplex} className="border rounded-md p-2" placeholder="Multiplex ad HTML"></textarea>
+          <input name="pubId" defaultValue={ads.pubId} className="border rounded-md p-2" placeholder="Publisher ID (e.g. ca-pub-1234567890)" />
+          <textarea name="top" rows={3} defaultValue={ads.top} className="border rounded-md p-2" placeholder="Top ad HTML (slot 1 of 3 — home page)"></textarea>
+          <textarea name="inArticle" rows={3} defaultValue={ads.inArticle} className="border rounded-md p-2" placeholder="In-article ad HTML (slot 2 of 3 — job detail page)"></textarea>
+          <textarea name="multiplex" rows={3} defaultValue={ads.multiplex} className="border rounded-md p-2" placeholder="Multiplex ad HTML (slot 3 of 3 — home page)"></textarea>
           <button className="bg-slate-900 text-white px-4 py-2 rounded-md w-full">Save Ads</button>
         </form>
       </section>
