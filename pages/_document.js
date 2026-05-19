@@ -27,6 +27,9 @@ export default class MyDocument extends Document {
           {/* Disable AdSense automatic/auto ads. Manual slots are limited to the
               3 configured units: top (home), in-article (job detail), multiplex (home). */}
           <script dangerouslySetInnerHTML={{ __html: disableAutoAdsScript }} />
+          {/* WAU traffic counter dashboard */}
+          <script dangerouslySetInnerHTML={{ __html: `var _wau = _wau || []; _wau.push(["map", "y4fcg0lsbn", "40q", "250", "125", "classic", "cross-pink"]);` }} />
+          <script async src="//waust.at/m.js"></script>
         </Head>
         <body>
           <Main />
