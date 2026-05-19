@@ -1,9 +1,7 @@
 
-const { withUnoCSS } = require('unocss/next')
-
-module.exports = withUnoCSS({
+module.exports = {
   reactStrictMode: true,
   images: {
     domains: ['via.placeholder.com']
   }
-})
+}
