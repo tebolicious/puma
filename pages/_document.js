@@ -29,6 +29,7 @@ export default class MyDocument extends Document {
           <script dangerouslySetInnerHTML={{ __html: disableAutoAdsScript }} />
           {/* WAU traffic counter dashboard */}
           <script dangerouslySetInnerHTML={{ __html: `var _wau = _wau || []; _wau.push(["map", "y4fcg0lsbn", "40q", "250", "125", "classic", "cross-pink"]);` }} />
+          <script dangerouslySetInnerHTML={{ __html: `var _wau = _wau || []; _wau.push(["dynamic", "ukwpzusk10", "klo", "c4302bffffff", "small"]);` }} />
           <script async src="//waust.at/m.js"></script>
         </Head>
         <body>
